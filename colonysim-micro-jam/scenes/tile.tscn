@@ -27,5 +27,3 @@ shape = SubResource("CircleShape2D_ywnoi")
 
 [connection signal="mouse_entered" from="clickbox" to="." method="_on_clickbox_mouse_entered"]
 [connection signal="mouse_exited" from="clickbox" to="." method="_on_clickbox_mouse_exited"]
-[connection signal="mouse_entered" from="area" to="." method="_on_clickbox_mouse_entered"]
-[connection signal="mouse_exited" from="area" to="." method="_on_clickbox_mouse_exited"]
