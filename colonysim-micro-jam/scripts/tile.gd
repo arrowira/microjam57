@@ -7,16 +7,22 @@ var flipped = false
 var buildCD = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$StatusMenu.position=Vector2(-1,-1)
 	if flipped:
 		$BuildMenu.rotation=PI
+		$StatusMenu.rotation=PI
 	id = randi_range(0,20)
 	if position.x > 2000:
 		$EquilateralTriangle.modulate = Color.DARK_BLUE
 	else:
 		$EquilateralTriangle.modulate = Color.DARK_OLIVE_GREEN
-	
+	configurestatus()
 	idUpdate()
-	
+
+func configurestatus():
+	if id == 2:
+		#void
+		$StatusMenu/Panel/statusText.text = "Void tile; unbuildable"
 
 func idUpdate():
 	if id == 1:
@@ -59,14 +65,17 @@ func _process(delta: float) -> void:
 
 func _on_clickbox_mouse_entered() -> void:
 	inMouse = true
+	$StatusMenu.visible = true
 
 
 func _on_clickbox_mouse_exited() -> void:
 	inMouse = false
+	$StatusMenu.visible = false
 
 
 func _on_timer_timeout() -> void:
-	for i in range(14):
+	#spread biomes
+	for i in range(10):
 		for area in $area.get_overlapping_areas():
 			if area.name == "clickbox":
 				
