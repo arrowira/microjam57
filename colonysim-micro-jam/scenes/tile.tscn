@@ -1,10 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b0qxc8g7iqhid"]
+[gd_scene load_steps=3 format=3 uid="uid://b0qxc8g7iqhid"]
 
 [ext_resource type="Texture2D" uid="uid://1k8uc5pg22k5" path="res://sprites/equilateral triangle.png" id="1_3dk36"]
 [ext_resource type="Script" uid="uid://c2bervsmjg1qd" path="res://scripts/tile.gd" id="1_ywnoi"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_ywnoi"]
-radius = 126.01587
 
 [node name="tile" type="Node2D"]
 script = ExtResource("1_ywnoi")
@@ -22,8 +19,17 @@ polygon = PackedVector2Array(-59, 84, -59, -96, 95, -5)
 
 [node name="area" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="area"]
-shape = SubResource("CircleShape2D_ywnoi")
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="area"]
+position = Vector2(3, 5)
+rotation = 1.029269
+polygon = PackedVector2Array(-59, 84, -59, -96, 95, -5)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true
 
 [connection signal="mouse_entered" from="clickbox" to="." method="_on_clickbox_mouse_entered"]
 [connection signal="mouse_exited" from="clickbox" to="." method="_on_clickbox_mouse_exited"]
+[connection signal="area_entered" from="area" to="." method="_on_area_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
