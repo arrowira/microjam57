@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0qxc8g7iqhid"]
+
+[ext_resource type="Texture2D" uid="uid://1k8uc5pg22k5" path="res://sprites/equilateral triangle.png" id="1_3dk36"]
+[ext_resource type="Script" uid="uid://c2bervsmjg1qd" path="res://scripts/tile.gd" id="1_ywnoi"]
+
+[node name="tile" type="Node2D"]
+script = ExtResource("1_ywnoi")
+
+[node name="EquilateralTriangle" type="Sprite2D" parent="."]
+position = Vector2(47, 24)
+rotation = 1.5707964
+texture = ExtResource("1_3dk36")
+
+[node name="clickbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="clickbox"]
+polygon = PackedVector2Array(-61, 94, -59, -96, 104, -1)
+
+[connection signal="mouse_entered" from="clickbox" to="." method="_on_clickbox_mouse_entered"]
+[connection signal="mouse_exited" from="clickbox" to="." method="_on_clickbox_mouse_exited"]
