@@ -18,6 +18,7 @@ func _ready() -> void:
 	else:
 		$EquilateralTriangle.modulate = Color.DARK_OLIVE_GREEN
 	idUpdate()
+	
 
 func configurestatus():
 	if id == 2:
@@ -33,14 +34,17 @@ func idUpdate():
 	configurestatus()
 
 func construction(id, sprite):
+	consBC(id,sprite,false)
+func consBC(id, sprite, onStart):
 	industrialID = id
 	if sprite == 0:
 		sprite = $EquilateralTriangle
 	#factory
 	if id == 1:
-		for area in get_parent().get_parent().get_node("mousemirror").get_node("mouse").get_overlapping_areas():
-			if area.name == "clickbox":
-				area.get_parent().get_node("EquilateralTriangle").modulate = Color.GRAY
+		if !onStart:
+			for area in get_parent().get_parent().get_node("mousemirror").get_node("mouse").get_overlapping_areas():
+				if area.name == "clickbox":
+					area.get_parent().get_node("EquilateralTriangle").modulate = Color.GRAY
 		sprite.modulate = Color.GRAY
 	
 	building=false
