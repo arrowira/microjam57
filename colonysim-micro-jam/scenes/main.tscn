@@ -1,3 +1,8 @@
-[gd_scene format=3 uid="uid://do2y2rxcevt50"]
+[gd_scene load_steps=2 format=3 uid="uid://do2y2rxcevt50"]
+
+[ext_resource type="PackedScene" uid="uid://boxtb7fd348qt" path="res://scenes/tilegroup.tscn" id="1_0wfyh"]
 
 [node name="main" type="Node2D"]
+
+[node name="tileGroup" parent="." instance=ExtResource("1_0wfyh")]
+position = Vector2(-53, -775)
