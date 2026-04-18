@@ -16,7 +16,6 @@ func _ready() -> void:
 		$EquilateralTriangle.modulate = Color.DARK_BLUE
 	else:
 		$EquilateralTriangle.modulate = Color.DARK_OLIVE_GREEN
-	configurestatus()
 	idUpdate()
 
 func configurestatus():
@@ -30,6 +29,7 @@ func idUpdate():
 	elif id == 2:
 		$EquilateralTriangle.modulate = Color.WHITE * 0.1
 		$EquilateralTriangle.modulate.a = 1
+	configurestatus()
 
 func construction(id, sprite):
 	
@@ -53,6 +53,8 @@ func build():
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if get_parent().get_parent().building:
+		$StatusMenu.visible=false
 	if Input.is_action_just_pressed("click") and inMouse:
 		if !get_parent().get_parent().building:
 			var mirrorId
