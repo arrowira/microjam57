@@ -2,6 +2,7 @@ extends Node2D
 
 var inMouse = false
 var id = 0
+var industrialID = 0
 var building = false
 var flipped = false
 var buildCD = false
@@ -32,11 +33,11 @@ func idUpdate():
 	configurestatus()
 
 func construction(id, sprite):
-	
+	industrialID = id
 	if sprite == 0:
 		sprite = $EquilateralTriangle
 	#factory
-	if id == 0:
+	if id == 1:
 		for area in get_parent().get_parent().get_node("mousemirror").get_node("mouse").get_overlapping_areas():
 			if area.name == "clickbox":
 				area.get_parent().get_node("EquilateralTriangle").modulate = Color.GRAY
@@ -51,8 +52,15 @@ func build():
 	building = true
 	get_parent().get_parent().building = true
 	
+func _physics_process(delta: float) -> void:
+	var manager = get_parent().get_parent()
+	if industrialID!=0:
+		if industrialID==1:
+			manager.metal+= 0.01
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	
+	
 	if get_parent().get_parent().building:
 		$StatusMenu.visible=false
 	if Input.is_action_just_pressed("click") and inMouse:
@@ -91,4 +99,4 @@ func _on_timer_timeout() -> void:
 
 
 func _on_factory_b_button_down() -> void:
-	construction(0,0)
+	construction(1,0)
