@@ -4,6 +4,7 @@ var inMouse = false
 var id = 0
 var building = false
 var flipped = false
+var buildCD = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if flipped:
@@ -25,6 +26,7 @@ func idUpdate():
 		$EquilateralTriangle.modulate.a = 1
 
 func construction(id, sprite):
+	
 	if sprite == 0:
 		sprite = $EquilateralTriangle
 	#factory
@@ -34,8 +36,9 @@ func construction(id, sprite):
 				area.get_parent().get_node("EquilateralTriangle").modulate = Color.GRAY
 		sprite.modulate = Color.GRAY
 	
+	building=false
 	$BuildMenu.visible = false
-	get_parent().get_parent().building = false
+	get_parent().get_parent().construct()
 	
 func build():
 	$BuildMenu.visible=true
@@ -45,8 +48,8 @@ func build():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("click") and inMouse:
-		build()
-
+		if !get_parent().get_parent().building:
+			build()
 
 func _on_clickbox_mouse_entered() -> void:
 	inMouse = true
@@ -71,5 +74,4 @@ func _on_timer_timeout() -> void:
 
 
 func _on_factory_b_button_down() -> void:
-	building=false
 	construction(0,0)
