@@ -49,7 +49,13 @@ func build():
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("click") and inMouse:
 		if !get_parent().get_parent().building:
-			build()
+			var mirrorId
+			for area in get_parent().get_parent().get_node("mousemirror").get_node("mouse").get_overlapping_areas():
+				if area.name == "clickbox":
+					mirrorId = area.get_parent().id
+			#check for not void space
+			if id!=2 and mirrorId!=2:
+				build()
 
 func _on_clickbox_mouse_entered() -> void:
 	inMouse = true
