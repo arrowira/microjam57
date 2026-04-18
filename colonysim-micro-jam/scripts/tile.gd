@@ -25,6 +25,9 @@ func idUpdate():
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("click") and inMouse:
 		$EquilateralTriangle.modulate = Color.GRAY
+		for area in get_parent().get_parent().get_node("mousemirror").get_node("mouse").get_overlapping_areas():
+			if area.name == "clickbox":
+				area.get_parent().get_node("EquilateralTriangle").modulate = Color.GRAY
 
 
 func _on_clickbox_mouse_entered() -> void:

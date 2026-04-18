@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dy0bdojpmvwjh"]
+
+[ext_resource type="Script" uid="uid://nt3n8533duc7" path="res://scripts/mousemirror.gd" id="1_fl3jj"]
+[ext_resource type="Texture2D" uid="uid://cu2880x8adomh" path="res://icon.svg" id="2_uopra"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uopra"]
+
+[node name="mousemirror" type="Node2D"]
+script = ExtResource("1_fl3jj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_uopra")
+
+[node name="mouse" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="mouse"]
+shape = SubResource("CircleShape2D_uopra")
