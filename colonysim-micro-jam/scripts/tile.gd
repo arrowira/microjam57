@@ -2,8 +2,12 @@ extends Node2D
 
 var inMouse = false
 var id = 0
+var building = false
+var flipped = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if flipped:
+		$BuildMenu.rotation=PI
 	id = randi_range(0,20)
 	if position.x > 2000:
 		$EquilateralTriangle.modulate = Color.DARK_BLUE
@@ -20,14 +24,28 @@ func idUpdate():
 		$EquilateralTriangle.modulate = Color.WHITE * 0.1
 		$EquilateralTriangle.modulate.a = 1
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("click") and inMouse:
-		$EquilateralTriangle.modulate = Color.GRAY
+func construction(id, sprite):
+	if sprite == 0:
+		sprite = $EquilateralTriangle
+	#factory
+	if id == 0:
 		for area in get_parent().get_parent().get_node("mousemirror").get_node("mouse").get_overlapping_areas():
 			if area.name == "clickbox":
 				area.get_parent().get_node("EquilateralTriangle").modulate = Color.GRAY
+		sprite.modulate = Color.GRAY
+	
+	$BuildMenu.visible = false
+	get_parent().get_parent().building = false
+	
+func build():
+	$BuildMenu.visible=true
+	building = true
+	get_parent().get_parent().building = true
+	
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("click") and inMouse:
+		build()
 
 
 func _on_clickbox_mouse_entered() -> void:
@@ -50,3 +68,8 @@ func _on_timer_timeout() -> void:
 					if randf()<0.05:
 						id = 2
 				idUpdate()
+
+
+func _on_factory_b_button_down() -> void:
+	building=false
+	construction(0,0)

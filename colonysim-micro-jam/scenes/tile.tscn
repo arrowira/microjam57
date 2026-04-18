@@ -29,7 +29,28 @@ wait_time = 0.5
 one_shot = true
 autostart = true
 
+[node name="BuildMenu" type="Control" parent="."]
+visible = false
+z_index = 8
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="BuildMenu"]
+layout_mode = 0
+offset_top = -296.0
+offset_right = 279.0
+offset_bottom = 40.0
+
+[node name="factoryB" type="Button" parent="BuildMenu/Panel"]
+layout_mode = 0
+offset_right = 279.0
+offset_bottom = 89.0
+text = "Factory"
+
 [connection signal="mouse_entered" from="clickbox" to="." method="_on_clickbox_mouse_entered"]
 [connection signal="mouse_exited" from="clickbox" to="." method="_on_clickbox_mouse_exited"]
 [connection signal="area_entered" from="area" to="." method="_on_area_area_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="button_down" from="BuildMenu/Panel/factoryB" to="." method="_on_factory_b_button_down"]

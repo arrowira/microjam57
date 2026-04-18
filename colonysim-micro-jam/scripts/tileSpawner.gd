@@ -20,4 +20,5 @@ func _ready() -> void:
 			newTile.position.x = 170*col + 50
 			newTile.position.y = 95*col + 190*row + 95
 			newTile.rotation = PI
+			newTile.flipped = true
 			add_child(newTile)
