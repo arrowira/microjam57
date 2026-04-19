@@ -150,29 +150,35 @@ func _physics_process(delta: float) -> void:
 			durability-=1
 		if inMouse:
 			get_parent().get_parent().get_node("StatusMenu").updateDurability(durability)
-	
+
+		
 	if industrialID!=0:
-		t+=1
-		if t%50==0:
-			match industrialID:
-				1:
-					if manager.power < 2:
-						$sprites.modulate = Color.WHITE*0.3
-					else:
-						$sprites.modulate = Color.WHITE
-						manager.metal+=baseOutput+boost
-						manager.power-=baseOutput
-				2:
-					if manager.power < 2:
-						$sprites.modulate = Color.WHITE*0.3
-					else:
-						$sprites.modulate = Color.WHITE
-						manager.food+=baseOutput+boost
-						manager.power-=baseOutput/2
-				3:
-					manager.food-=baseOutput+boost
-				4:
-					manager.power+=baseOutput+boost
+
+		if durability == 0:
+			$sprites/repairButton.visible = true
+			$sprites.modulate = Color.RED
+		else:
+			t+=1
+			if t%50==0:
+				match industrialID:
+					1:
+						if manager.power < 2:
+							$sprites.modulate = Color.WHITE*0.3
+						else:
+							$sprites.modulate = Color.WHITE
+							manager.metal+=baseOutput+boost
+							manager.power-=baseOutput
+					2:
+						if manager.power < 2:
+							$sprites.modulate = Color.WHITE*0.3
+						else:
+							$sprites.modulate = Color.WHITE
+							manager.food+=baseOutput+boost
+							manager.power-=baseOutput/2
+					3:
+						manager.food-=baseOutput+boost
+					4:
+						manager.power+=baseOutput+boost
 			
 
 func _process(delta: float) -> void:
@@ -288,3 +294,10 @@ func _on_X_down() -> void:
 func _on_power_b_button_down() -> void:
 	if manager.req(1,8) and manager.req(2,1):
 		construction(4,0)
+
+
+func repair() -> void:
+	if manager.req(1,5):
+		$sprites/repairButton.visible=false
+		manager.metal-=5
+		durability = 100
