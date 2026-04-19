@@ -165,6 +165,8 @@ stream = ExtResource("15_jkv2x")
 
 [node name="music" type="AudioStreamPlayer" parent="audioManager"]
 stream = ExtResource("16_jbj1t")
+volume_db = -6.679
+pitch_scale = 0.9
 autoplay = true
 
 [connection signal="mouse_entered" from="CanvasLayer/Area2D" to="Camera2D" method="_on_area_2d_mouse_entered"]

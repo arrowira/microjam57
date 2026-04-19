@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://b0qxc8g7iqhid"]
+[gd_scene load_steps=10 format=3 uid="uid://b0qxc8g7iqhid"]
 
 [ext_resource type="Texture2D" uid="uid://1k8uc5pg22k5" path="res://sprites/equilateral triangle.png" id="1_3dk36"]
 [ext_resource type="Script" uid="uid://c2bervsmjg1qd" path="res://scripts/tile.gd" id="1_ywnoi"]
-[ext_resource type="Texture2D" uid="uid://cj8bwljpiovk" path="res://sprites/Factory_Right.webp" id="3_jy7pm"]
+[ext_resource type="Texture2D" uid="uid://bxba3jdi11bi4" path="res://sprites/Factory_Right.webp" id="3_jy7pm"]
+[ext_resource type="Texture2D" uid="uid://jogwcaavo3vy" path="res://sprites/factory_triangle_L.webp" id="4_q7utx"]
+[ext_resource type="Texture2D" uid="uid://xxva3vbtn7op" path="res://sprites/farm_house.webp" id="5_6p3j2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jy7pm"]
 bg_color = Color(0.2712231, 0.30817446, 0.34673908, 1)
@@ -123,8 +125,29 @@ z_index = 1
 
 [node name="FactoryRight" type="Sprite2D" parent="sprites"]
 visible = false
-position = Vector2(34, -55)
+position = Vector2(27, -21)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_jy7pm")
+flip_h = true
+
+[node name="FactoryLeft" type="Sprite2D" parent="sprites"]
+visible = false
+position = Vector2(-27, -22)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_q7utx")
+
+[node name="FarmHouseRight" type="Sprite2D" parent="sprites"]
+visible = false
+position = Vector2(16, -8)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("5_6p3j2")
+flip_h = true
+
+[node name="FarmHouseLeft" type="Sprite2D" parent="sprites"]
+visible = false
+position = Vector2(-10, 0.99999905)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("5_6p3j2")
 
 [connection signal="area_entered" from="clickbox" to="." method="_on_clickbox_area_entered"]
 [connection signal="area_exited" from="clickbox" to="." method="_on_clickbox_area_exited"]

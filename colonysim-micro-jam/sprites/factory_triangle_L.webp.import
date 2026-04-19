@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxba3jdi11bi4"
-path="res://.godot/imported/Factory_Right.webp-aff5c17c51a9c20880e35004d312b8b9.ctex"
+uid="uid://jogwcaavo3vy"
+path="res://.godot/imported/factory_triangle_L.webp-fc05f3bb941d613458e7472fee2b4df4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Factory_Right.webp"
-dest_files=["res://.godot/imported/Factory_Right.webp-aff5c17c51a9c20880e35004d312b8b9.ctex"]
+source_file="res://sprites/factory_triangle_L.webp"
+dest_files=["res://.godot/imported/factory_triangle_L.webp-fc05f3bb941d613458e7472fee2b4df4.ctex"]
 
 [params]
 

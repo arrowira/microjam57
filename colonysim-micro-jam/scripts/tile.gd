@@ -17,11 +17,13 @@ var defaultMod = 1
 
 #on ready stuff
 func _ready() -> void:
+	z_index = position.y/100.0
 	manager = get_parent().get_parent()
 	$StatusMenu.position=Vector2(-1,-1)
 	if flipped:
 		$BuildMenu.rotation=PI
 		$StatusMenu.rotation=PI
+		$sprites.rotation=PI
 	id = randi_range(0,20)
 	if position.x > 2000:
 		$EquilateralTriangle.modulate = Color.DARK_BLUE
@@ -71,18 +73,25 @@ func consBC(buildID, sprite, onStart):
 					area.get_parent().consBC(buildID,0,true)
 	#factory
 	if buildID == 1:
+		sprite.modulate = Color(0.244, 0.33, 0.424, 1.0)
 		baseOutput = 1
-		$sprites/FactoryRight.visible=true
+		if flipped:
+			$sprites/FactoryLeft.visible=true
+		else:
+			$sprites/FactoryRight.visible=true
 		manager.metal-=5
 		manager.people-=1
 	#farm
 	if buildID == 2:
 		if id == 1:
 			boost=1
+		if flipped:
+			$sprites/FarmHouseLeft.visible=true
+		else:
+			$sprites/FarmHouseRight.visible=true
 		baseOutput = 2
 		manager.metal-=2
 		manager.people-=2
-		sprite.modulate = Color.ANTIQUE_WHITE
 	#house
 	if buildID == 3:
 		baseOutput = 1
@@ -115,9 +124,7 @@ func _physics_process(delta: float) -> void:
 				3:
 					manager.food-=baseOutput+boost
 			
-			
-			
-			
+
 func _process(delta: float) -> void:
 	#button opacities
 	if building:
@@ -221,5 +228,5 @@ func _on_house_b_button_down() -> void:
 func _on_X_down() -> void:
 	$BuildMenu.visible=false
 	building = false
-	get_parent().get_parent().building = false
+	get_parent().get_parent().construct()
 	
