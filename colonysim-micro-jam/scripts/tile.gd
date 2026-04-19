@@ -121,7 +121,7 @@ func consBC(buildID, sprite, onStart):
 			$sprites/PowerplantLeft.visible=true
 		else:
 			$sprites/PowerplantRight.visible=true
-		baseOutput = 1
+		baseOutput = 0.5
 		manager.people-=1
 		manager.metal-=10
 		sprite.modulate = Color(0.244, 0.33, 0.424, 1.0)
@@ -145,9 +145,19 @@ func _physics_process(delta: float) -> void:
 		if t%50==0:
 			match industrialID:
 				1:
-					manager.metal+=baseOutput+boost
+					if manager.power == 0:
+						$EquilateralTriangle.modulate.a = 0.2
+					else:
+						$EquilateralTriangle.modulate.a = defaultMod
+						manager.metal+=baseOutput+boost
+						manager.power-=baseOutput
 				2:
-					manager.food+=baseOutput+boost
+					if manager.power == 0:
+						$EquilateralTriangle.modulate.a = 0.2
+					else:
+						$EquilateralTriangle.modulate.a = defaultMod
+						manager.food+=baseOutput+boost
+						manager.power-=baseOutput/2
 				3:
 					manager.food-=baseOutput+boost
 				4:
