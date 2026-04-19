@@ -14,6 +14,7 @@ var baseOutput = 0
 var manager
 var defaultMod = 1
 
+var sparkles = preload("res://scenes/sparkles.tscn")
 
 #on ready stuff
 func _ready() -> void:
@@ -85,6 +86,10 @@ func consBC(buildID, sprite, onStart):
 	if buildID == 2:
 		if id == 1:
 			boost=1
+			var sparks = sparkles.instantiate()
+			get_parent().add_child(sparks)
+			sparks.position = position
+			sparks.z_index = z_index+1
 		if flipped:
 			$sprites/FarmHouseLeft.visible=true
 		else:

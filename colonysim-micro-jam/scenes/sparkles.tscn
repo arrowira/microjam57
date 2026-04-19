@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://c83tcoop7po4j"]
+
+[sub_resource type="Curve" id="Curve_8r0f6"]
+_data = [Vector2(0, 0.9550562), 0.0, 0.0, 0, 0, Vector2(0.81976753, 0.8876405), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="sparkles" type="Node2D"]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 5
+lifetime = 2.0
+emission_shape = 1
+emission_sphere_radius = 61.7
+direction = Vector2(0, -1)
+spread = 20.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 103.09
+initial_velocity_max = 154.64
+radial_accel_min = -1.5
+radial_accel_max = 1.9
+angle_min = -89.1
+angle_max = 267.2
+scale_amount_min = 10.31
+scale_amount_max = 42.23
+scale_amount_curve = SubResource("Curve_8r0f6")
+color = Color(0.9399242, 0.7900664, 0.44530642, 1)
