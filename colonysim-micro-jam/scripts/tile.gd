@@ -44,7 +44,7 @@ func consBC(id, sprite, onStart):
 		if !onStart:
 			for area in get_parent().get_parent().get_node("mousemirror").get_node("mouse").get_overlapping_areas():
 				if area.name == "clickbox":
-					area.get_parent().get_node("EquilateralTriangle").modulate = Color.GRAY
+					area.get_parent().consBC(1,0,true)
 		sprite.modulate = Color.GRAY
 	
 	building=false
@@ -74,8 +74,16 @@ func _process(delta: float) -> void:
 				if area.name == "clickbox":
 					mirrorId = area.get_parent().id
 			#check for not void space
-			if id!=2 and mirrorId!=2:
-				build()
+			if id!=2 and mirrorId!=2 and industrialID == 0:
+				#check for adjacent tiles
+				var byBuilt = false
+				for area in $area.get_overlapping_areas():
+					if area.name == "clickbox":
+						if area.get_parent().industrialID != 0:
+							byBuilt = true
+							break
+				if byBuilt:
+					build()
 
 func _on_clickbox_mouse_entered() -> void:
 	inMouse = true
