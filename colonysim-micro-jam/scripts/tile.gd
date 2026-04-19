@@ -145,19 +145,19 @@ func _physics_process(delta: float) -> void:
 		if t%50==0:
 			match industrialID:
 				1:
-					if manager.power == 0:
-						$EquilateralTriangle.modulate.a = 0.2
+					if manager.power < 2:
+						$sprites.modulate = Color.WHITE*0.3
 					else:
-						$EquilateralTriangle.modulate.a = defaultMod
+						$sprites.modulate = Color.WHITE
 						manager.metal+=baseOutput+boost
 						manager.power-=baseOutput
 				2:
-					if manager.power == 0:
-						$EquilateralTriangle.modulate.a = 0.2
+					if manager.power < 2:
+						$sprites.modulate = Color.WHITE*0.3
 					else:
-						$EquilateralTriangle.modulate.a = defaultMod
+						$sprites.modulate = Color.WHITE
 						manager.food+=baseOutput+boost
-						manager.power-=baseOutput/2
+						manager.power-=baseOutput
 				3:
 					manager.food-=baseOutput+boost
 				4:
@@ -264,7 +264,7 @@ func _on_farm_b_button_down() -> void:
 
 
 func _on_house_b_button_down() -> void:
-	if manager.req(1,4):
+	if manager.req(1,8):
 		construction(3,0)
 
 
