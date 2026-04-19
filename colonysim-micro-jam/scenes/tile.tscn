@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b0qxc8g7iqhid"]
+[gd_scene load_steps=8 format=3 uid="uid://b0qxc8g7iqhid"]
 
 [ext_resource type="Texture2D" uid="uid://1k8uc5pg22k5" path="res://sprites/equilateral triangle.png" id="1_3dk36"]
 [ext_resource type="Script" uid="uid://c2bervsmjg1qd" path="res://scripts/tile.gd" id="1_ywnoi"]
@@ -12,6 +12,9 @@ bg_color = Color(0.3177906, 0.4410281, 0.33491555, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6p3j2"]
 bg_color = Color(0.6295259, 0.4283951, 0.3183641, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gtpg2"]
+bg_color = Color(0.16924527, 0.16924533, 0.16924518, 1)
 
 [node name="tile" type="Node2D"]
 script = ExtResource("1_ywnoi")
@@ -82,6 +85,15 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_6p3j2")
 text = "House
 "
 
+[node name="Button" type="Button" parent="BuildMenu/Panel"]
+layout_mode = 0
+offset_left = 243.0
+offset_top = 311.0
+offset_right = 295.0
+offset_bottom = 361.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_gtpg2")
+text = "X"
+
 [node name="StatusMenu" type="Control" parent="."]
 visible = false
 z_index = 8
@@ -123,3 +135,4 @@ texture = ExtResource("3_jy7pm")
 [connection signal="button_down" from="BuildMenu/Panel/factoryB" to="." method="_on_factory_b_button_down"]
 [connection signal="button_down" from="BuildMenu/Panel/farmB" to="." method="_on_farm_b_button_down"]
 [connection signal="button_down" from="BuildMenu/Panel/houseB" to="." method="_on_house_b_button_down"]
+[connection signal="button_down" from="BuildMenu/Panel/Button" to="." method="_on_X_down"]

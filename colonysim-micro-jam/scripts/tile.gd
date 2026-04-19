@@ -216,3 +216,10 @@ func _on_farm_b_button_down() -> void:
 func _on_house_b_button_down() -> void:
 	if manager.req(1,4):
 		construction(3,0)
+
+
+func _on_X_down() -> void:
+	$BuildMenu.visible=false
+	building = false
+	get_parent().get_parent().building = false
+	
