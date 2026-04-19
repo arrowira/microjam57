@@ -27,6 +27,15 @@ func req(id, amt):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if food < 10:
+		$CanvasLayer/Panel/lowFood.visible=true
+	else:
+		$CanvasLayer/Panel/lowFood.visible=false
+	
+	if power < 2:
+		$CanvasLayer/Panel/powerOutage.visible=true
+	else:
+		$CanvasLayer/Panel/powerOutage.visible=false
 	if Input.is_action_just_pressed("exit"):
 		Engine.time_scale = 0
 		building=true
@@ -49,7 +58,7 @@ func _on_build_cd_timeout() -> void:
 
 
 func _on_button_button_down() -> void:
-	get_tree().change_scene_to_file("res://scenes/loading.tscn")
+	get_tree().change_scene_to_file("res://scenes/main.tscn")
 
 
 func _on_resume() -> void:

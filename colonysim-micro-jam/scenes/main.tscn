@@ -1,10 +1,11 @@
-[gd_scene load_steps=24 format=3 uid="uid://do2y2rxcevt50"]
+[gd_scene load_steps=25 format=3 uid="uid://do2y2rxcevt50"]
 
 [ext_resource type="PackedScene" uid="uid://boxtb7fd348qt" path="res://scenes/tilegroup.tscn" id="1_0wfyh"]
 [ext_resource type="Script" uid="uid://coqpyfbjlvgwh" path="res://scripts/main.gd" id="1_jyhfs"]
 [ext_resource type="Script" uid="uid://carv07d8dyemw" path="res://scripts/camera.gd" id="2_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://dy0bdojpmvwjh" path="res://scenes/mousemirror.tscn" id="3_sugp2"]
 [ext_resource type="Texture2D" uid="uid://cs4jqivyfbs85" path="res://sprites/applepng.png" id="3_ya4ey"]
+[ext_resource type="FontFile" uid="uid://y88hlvx6wsoq" path="res://sprites/Montreal-Regular.ttf" id="4_0ld40"]
 [ext_resource type="Texture2D" uid="uid://b65wwwtluhvyn" path="res://sprites/gearicon.png" id="4_eb6dy"]
 [ext_resource type="Script" uid="uid://ighr3ohaixx7" path="res://scripts/start_area.gd" id="5_tbgi4"]
 [ext_resource type="Texture2D" uid="uid://m027uxchq140" path="res://sprites/personicon.png" id="5_trceg"]
@@ -90,6 +91,31 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 text = "0
 "
 horizontal_alignment = 2
+
+[node name="lowFood" type="RichTextLabel" parent="CanvasLayer/Panel"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 74.0
+offset_top = 1.0
+offset_right = 315.0
+offset_bottom = 41.0
+theme_override_colors/default_color = Color(1, 0.3497591, 0.3494088, 1)
+theme_override_fonts/normal_font = ExtResource("4_0ld40")
+theme_override_font_sizes/normal_font_size = 30
+text = "LOW FOOD
+"
+
+[node name="powerOutage" type="RichTextLabel" parent="CanvasLayer/Panel"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 73.0
+offset_top = 122.0
+offset_right = 420.0
+offset_bottom = 190.0
+theme_override_colors/default_color = Color(1, 0.3497591, 0.3494088, 1)
+theme_override_fonts/normal_font = ExtResource("4_0ld40")
+theme_override_font_sizes/normal_font_size = 30
+text = "POWER OUTAGE"
 
 [node name="foodsign" type="Sprite2D" parent="CanvasLayer/Panel"]
 position = Vector2(56.000004, 21)
