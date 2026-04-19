@@ -1,0 +1,116 @@
+[gd_scene load_steps=8 format=3 uid="uid://cmlu6qrtp8gax"]
+
+[ext_resource type="Script" uid="uid://dc8w676d3f2q5" path="res://scripts/build_menu.gd" id="1_v5yj6"]
+[ext_resource type="FontFile" uid="uid://y88hlvx6wsoq" path="res://sprites/Montreal-Regular.ttf" id="2_n85bh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jp2d4"]
+bg_color = Color(0.2712231, 0.30817446, 0.34673908, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4h3qg"]
+bg_color = Color(0.3177906, 0.4410281, 0.33491555, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s8q86"]
+bg_color = Color(0.6295259, 0.4283951, 0.3183641, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yiarh"]
+bg_color = Color(0.67858845, 0.6054055, 0.29325676, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_khv4l"]
+bg_color = Color(0.16924527, 0.16924533, 0.16924518, 1)
+
+[node name="BuildMenu" type="Control"]
+z_index = 8
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_v5yj6")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_top = -296.0
+offset_right = 279.0
+offset_bottom = 40.0
+
+[node name="factoryB" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 7.0
+offset_right = 273.0
+offset_bottom = 54.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_jp2d4")
+text = "Factory"
+
+[node name="farmB" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 59.0
+offset_right = 273.0
+offset_bottom = 106.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_4h3qg")
+text = "Farm
+"
+
+[node name="houseB" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 112.0
+offset_right = 273.0
+offset_bottom = 159.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_s8q86")
+text = "House
+"
+
+[node name="powerB" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 165.0
+offset_right = 273.0
+offset_bottom = 212.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_yiarh")
+text = "Power Generator
+"
+
+[node name="Button" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 226.0
+offset_top = 338.0
+offset_right = 278.0
+offset_bottom = 388.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_khv4l")
+text = "X"
+
+[node name="Panel" type="Panel" parent="Panel"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 217.0
+offset_right = 273.0
+offset_bottom = 333.0
+
+[node name="LineEdit" type="VSeparator" parent="Panel/Panel"]
+layout_mode = 0
+offset_right = 266.0
+offset_bottom = 115.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel/Panel"]
+layout_mode = 0
+offset_right = 266.0
+offset_bottom = 27.0
+theme_override_fonts/normal_font = ExtResource("2_n85bh")
+text = "Build costs:          Effects:"
+
+[node name="buildcosts" type="ItemList" parent="Panel/Panel"]
+layout_mode = 0
+offset_top = 20.0
+offset_right = 129.0
+offset_bottom = 116.0
+
+[node name="effects" type="ItemList" parent="Panel/Panel"]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 21.0
+offset_right = 269.0
+offset_bottom = 117.0
+
+[connection signal="mouse_entered" from="Panel/factoryB" to="." method="_on_factory_b_mouse_entered"]
+[connection signal="mouse_exited" from="Panel/factoryB" to="." method="_on_factory_b_mouse_exited"]

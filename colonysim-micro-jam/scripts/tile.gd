@@ -22,7 +22,7 @@ var baseOutput = 0
 
 var manager
 var defaultMod = 1
-
+@onready var buildMenu = $BuildMenu
 var sparkles = preload("res://scenes/sparkles.tscn")
 
 #on ready stuff
@@ -40,7 +40,7 @@ func _ready() -> void:
 	else:
 		$EquilateralTriangle.modulate = leftGround
 	idUpdate()
-	
+	remove_child(buildMenu)
 
 func configurestatus():
 	if industrialID == 0:
@@ -147,16 +147,18 @@ func consBC(buildID, sprite, onStart):
 			$sprites/PowerplantRight.visible=true
 		baseOutput = 0.5
 		manager.people-=1
-		manager.metal-=8
+		manager.metal-=4
 		sprite.modulate = Color(0.244, 0.33, 0.424, 1.0)
 		
 	building=false
-	$BuildMenu.visible = false
+	if !onStart:
+		$BuildMenu.visible = false
 	get_parent().get_parent().construct()
 	configurestatus()
 	
 
 func build():
+	add_child(buildMenu)
 	$BuildMenu.visible=true
 	building = true
 	get_parent().get_parent().building = true
