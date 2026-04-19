@@ -8,9 +8,11 @@ var building = false
 var flipped = false
 var buildCD = false
 
+var manager
 var defaultMod = 1
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	manager = get_parent().get_parent()
 	$StatusMenu.position=Vector2(-1,-1)
 	if flipped:
 		$BuildMenu.rotation=PI
@@ -51,9 +53,15 @@ func consBC(id, sprite, onStart):
 	#factory
 	if id == 1:
 		sprite.modulate = Color.GRAY
+		manager.metal-=5
+	#farm
 	if id == 2:
+		manager.metal-=2
 		sprite.modulate = Color.ANTIQUE_WHITE
+	#house
 	if id == 3:
+		manager.people+=2
+		manager.metal-=2
 		sprite.modulate = Color.CHOCOLATE
 	
 	building=false
@@ -68,15 +76,12 @@ func build():
 	
 	
 func _physics_process(delta: float) -> void:
-	var manager = get_parent().get_parent()
 	if industrialID!=0:
 		match industrialID:
 			1:
 				manager.metal+=0.001
 			2:
 				manager.food+=0.01
-			3:
-				manager.people+=0.01
 				
 			
 			

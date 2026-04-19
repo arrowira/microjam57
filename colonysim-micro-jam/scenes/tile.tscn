@@ -93,6 +93,8 @@ theme_override_font_sizes/normal_font_size = 25
 text = "Struff goes in here
 "
 
+[node name="sprites" type="Node2D" parent="."]
+
 [connection signal="area_entered" from="clickbox" to="." method="_on_clickbox_area_entered"]
 [connection signal="area_exited" from="clickbox" to="." method="_on_clickbox_area_exited"]
 [connection signal="mouse_entered" from="clickbox" to="." method="_on_clickbox_mouse_entered"]

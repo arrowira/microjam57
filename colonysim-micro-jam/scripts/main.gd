@@ -2,15 +2,15 @@ extends Node2D
 
 var building = false
 
-var food = 0
-var metal = 0
-var people = 0
+var food = 10
+var metal = 10
+var people = 2
 
 func construct():
 	$buildCD.start()
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
