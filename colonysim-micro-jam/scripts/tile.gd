@@ -115,8 +115,17 @@ func consBC(buildID, sprite, onStart):
 		baseOutput = 1
 		manager.people+=2
 		manager.metal-=5
-		sprite.modulate.r +=0.2
-	
+		sprite.modulate.r +=0.05
+	if buildID == 4:
+		if flipped:
+			$sprites/PowerplantLeft.visible=true
+		else:
+			$sprites/PowerplantRight.visible=true
+		baseOutput = 1
+		manager.people-=1
+		manager.metal-=10
+		sprite.modulate = Color(0.244, 0.33, 0.424, 1.0)
+		
 	building=false
 	$BuildMenu.visible = false
 	get_parent().get_parent().construct()
@@ -141,6 +150,8 @@ func _physics_process(delta: float) -> void:
 					manager.food+=baseOutput+boost
 				3:
 					manager.food-=baseOutput+boost
+				4:
+					manager.power+=baseOutput+boost
 			
 
 func _process(delta: float) -> void:

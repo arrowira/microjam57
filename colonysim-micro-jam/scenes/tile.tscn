@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b0qxc8g7iqhid"]
+[gd_scene load_steps=17 format=3 uid="uid://b0qxc8g7iqhid"]
 
 [ext_resource type="Texture2D" uid="uid://1k8uc5pg22k5" path="res://sprites/equilateral triangle.png" id="1_3dk36"]
 [ext_resource type="Script" uid="uid://c2bervsmjg1qd" path="res://scripts/tile.gd" id="1_ywnoi"]
@@ -9,6 +9,8 @@
 [ext_resource type="Script" uid="uid://dinutm1m25476" path="res://scripts/prop_blades.gd" id="7_284l3"]
 [ext_resource type="Texture2D" uid="uid://b00xfn7f58e4f" path="res://sprites/residentialLeft.webp" id="8_j3iir"]
 [ext_resource type="Texture2D" uid="uid://dch35kf08mou" path="res://sprites/residentialRight.webp" id="9_j8k5k"]
+[ext_resource type="Texture2D" uid="uid://bo5frqfxprtmq" path="res://sprites/powerplantLeft.webp" id="10_w8vld"]
+[ext_resource type="Texture2D" uid="uid://detro2kf82ra4" path="res://sprites/powerplantRight.webp" id="11_jm5cm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jy7pm"]
 bg_color = Color(0.2712231, 0.30817446, 0.34673908, 1)
@@ -52,6 +54,7 @@ one_shot = true
 autostart = true
 
 [node name="BuildMenu" type="Control" parent="."]
+visible = false
 z_index = 8
 layout_mode = 3
 anchors_preset = 0
@@ -189,6 +192,19 @@ visible = false
 position = Vector2(-18, -15)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("9_j8k5k")
+
+[node name="PowerplantLeft" type="Sprite2D" parent="sprites"]
+visible = false
+position = Vector2(-27, -21)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("10_w8vld")
+
+[node name="PowerplantRight" type="Sprite2D" parent="sprites"]
+visible = false
+position = Vector2(28, -16)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_jm5cm")
+flip_h = true
 
 [connection signal="area_entered" from="clickbox" to="." method="_on_clickbox_area_entered"]
 [connection signal="area_exited" from="clickbox" to="." method="_on_clickbox_area_exited"]
