@@ -29,10 +29,8 @@ var sparkles = preload("res://scenes/sparkles.tscn")
 func _ready() -> void:
 	z_index = position.y/100.0
 	manager = get_parent().get_parent()
-	$StatusMenu.position=Vector2(-1,-1)
 	if flipped:
 		$BuildMenu.rotation=PI
-		$StatusMenu.rotation=PI
 		$sprites.rotation=PI
 	id = randi_range(0,20)
 	if position.x > 2000:
@@ -42,28 +40,7 @@ func _ready() -> void:
 	idUpdate()
 	remove_child(buildMenu)
 
-func configurestatus():
-	if industrialID == 0:
-		if id == 2:
-			#void
-			$StatusMenu/Panel/statusText.text = "Void tile; unbuildable"
-		elif id == 1:
-			#fertile
-			$StatusMenu/Panel/statusText.text = "Fertile land; boosted farm outputs"
-		elif id == 3:
-			$StatusMenu/Panel/statusText.text = "Sunny land; boosted power output"
-		else:
-			#normal
-			$StatusMenu/Panel/statusText.text = "normal land"
-	else:
-		if industrialID == 1:
-			$StatusMenu/Panel/statusText.text = "factory; +" + str(boost+baseOutput) + " metal/second"
-		elif industrialID == 2:
-			$StatusMenu/Panel/statusText.text = "farm; +" + str(boost+baseOutput) + " food/second"
-		elif industrialID == 3:
-			$StatusMenu/Panel/statusText.text = "house; -" + str(boost+baseOutput) + " food/second"
-		elif industrialID == 4:
-			$StatusMenu/Panel/statusText.text = "power plant; +" + str(boost+baseOutput) + " power/second"
+
 
 func idUpdate():
 	if id == 1:
@@ -79,7 +56,7 @@ func idUpdate():
 			$EquilateralTriangle.modulate = rightSunny
 		else:
 			$EquilateralTriangle.modulate = leftSunny
-	configurestatus()
+	get_parent().get_parent().get_node("StatusMenu").configurestatus(industrialID,id,boost,baseOutput)
 
 
 #create structure
@@ -154,7 +131,7 @@ func consBC(buildID, sprite, onStart):
 	if !onStart:
 		$BuildMenu.visible = false
 	get_parent().get_parent().construct()
-	configurestatus()
+	get_parent().get_parent().get_node("StatusMenu").configurestatus(industrialID,id,boost,baseOutput)
 	
 
 func build():
@@ -218,8 +195,7 @@ func _process(delta: float) -> void:
 	else:
 		$EquilateralTriangle.modulate.a = defaultMod
 		
-	if get_parent().get_parent().building:
-		$StatusMenu.visible=false
+
 	if Input.is_action_just_pressed("click") and inMouse:
 		if !get_parent().get_parent().building:
 			
@@ -247,12 +223,12 @@ func _process(delta: float) -> void:
 
 func _on_clickbox_mouse_entered() -> void:
 	inMouse = true
-	$StatusMenu.visible = true
+	print(get_parent().get_parent().get_node("StatusMenu").position)
+	get_parent().get_parent().get_node("StatusMenu").position = global_position
 
 
 func _on_clickbox_mouse_exited() -> void:
 	inMouse = false
-	$StatusMenu.visible = false
 
 
 func _on_timer_timeout() -> void:

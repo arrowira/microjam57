@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgaco58al3iqf"]
+
+[ext_resource type="Script" uid="uid://bxn2g80kgwpru" path="res://scripts/status_menu.gd" id="1_yu8m8"]
+
+[node name="StatusMenu" type="Control"]
+z_index = 8
+layout_mode = 3
+anchors_preset = 0
+offset_left = -116.0
+offset_top = -111.0
+offset_right = -76.0
+offset_bottom = -71.0
+mouse_filter = 2
+script = ExtResource("1_yu8m8")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 234.0
+offset_bottom = 80.0
+
+[node name="statusText" type="RichTextLabel" parent="Panel"]
+layout_mode = 0
+offset_right = 234.0
+offset_bottom = 78.0
+theme_override_font_sizes/normal_font_size = 25
+text = "Struff goes in here
+"
