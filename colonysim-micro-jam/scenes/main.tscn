@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://do2y2rxcevt50"]
+[gd_scene load_steps=20 format=3 uid="uid://do2y2rxcevt50"]
 
 [ext_resource type="PackedScene" uid="uid://boxtb7fd348qt" path="res://scenes/tilegroup.tscn" id="1_0wfyh"]
 [ext_resource type="Script" uid="uid://coqpyfbjlvgwh" path="res://scripts/main.gd" id="1_jyhfs"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://fs7842igkmhy" path="res://scripts/audio_manager.gd" id="12_eb6dy"]
 [ext_resource type="AudioStream" uid="uid://b2lyddoyxy38m" path="res://audio/click.wav" id="13_a8y0u"]
 [ext_resource type="AudioStream" uid="uid://vqaq85hm3djl" path="res://audio/place2.wav" id="14_jkv2x"]
+[ext_resource type="AudioStream" uid="uid://cq8uyeomajdh8" path="res://audio/blipSelect.wav" id="15_jkv2x"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o6xl0"]
 shader = ExtResource("6_tefeu")
@@ -157,6 +158,9 @@ stream = ExtResource("13_a8y0u")
 [node name="place" type="AudioStreamPlayer" parent="audioManager"]
 stream = ExtResource("14_jkv2x")
 pitch_scale = 0.6
+
+[node name="error" type="AudioStreamPlayer" parent="audioManager"]
+stream = ExtResource("15_jkv2x")
 
 [connection signal="mouse_entered" from="CanvasLayer/Area2D" to="Camera2D" method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/Area2D" to="Camera2D" method="_on_area_2d_mouse_exited"]

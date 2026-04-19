@@ -5,3 +5,5 @@ func click():
 	$click.play()
 func place():
 	$place.play()
+func error():
+	$error.play()

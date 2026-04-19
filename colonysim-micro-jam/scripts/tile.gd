@@ -144,7 +144,7 @@ func _process(delta: float) -> void:
 		$StatusMenu.visible=false
 	if Input.is_action_just_pressed("click") and inMouse:
 		if !get_parent().get_parent().building:
-			get_parent().get_parent().get_node("audioManager").click()
+			
 			var mirrorId
 			for area in get_parent().get_parent().get_node("mousemirror").get_node("mouse").get_overlapping_areas():
 				if area.name == "clickbox":
@@ -159,7 +159,13 @@ func _process(delta: float) -> void:
 							byBuilt = true
 							break
 				if byBuilt:
+					get_parent().get_parent().get_node("audioManager").click()
 					build()
+				else:
+					manager.get_node("audioManager").error()
+			else:
+				manager.get_node("audioManager").error()
+			
 
 func _on_clickbox_mouse_entered() -> void:
 	inMouse = true
