@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://cq21ntjfpx4pp"]
+
+[ext_resource type="FontFile" uid="uid://y88hlvx6wsoq" path="res://sprites/Montreal-Regular.ttf" id="1_ir5ef"]
+[ext_resource type="Script" uid="uid://nh8wxcrskgen" path="res://scripts/loading.gd" id="1_yc7uc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yc7uc"]
+bg_color = Color(0.32983515, 0.46231598, 0.40192825, 1)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_yc7uc")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+offset_left = -1340.0
+offset_top = -1000.0
+offset_right = 2570.0
+offset_bottom = 2071.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_yc7uc")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+texture_filter = 1
+offset_top = 231.0
+offset_right = 1143.0
+offset_bottom = 614.0
+theme_override_fonts/normal_font = ExtResource("1_ir5ef")
+theme_override_font_sizes/normal_font_size = 80
+bbcode_enabled = true
+text = "LOADING..."
+horizontal_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
