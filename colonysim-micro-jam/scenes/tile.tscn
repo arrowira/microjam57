@@ -30,7 +30,6 @@ one_shot = true
 autostart = true
 
 [node name="BuildMenu" type="Control" parent="."]
-visible = false
 z_index = 8
 layout_mode = 3
 anchors_preset = 0
@@ -45,9 +44,29 @@ offset_bottom = 40.0
 
 [node name="factoryB" type="Button" parent="BuildMenu/Panel"]
 layout_mode = 0
-offset_right = 279.0
-offset_bottom = 89.0
+offset_left = 5.0
+offset_top = 7.0
+offset_right = 273.0
+offset_bottom = 54.0
 text = "Factory"
+
+[node name="farmB" type="Button" parent="BuildMenu/Panel"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 59.0
+offset_right = 273.0
+offset_bottom = 106.0
+text = "Farm
+"
+
+[node name="houseB" type="Button" parent="BuildMenu/Panel"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 112.0
+offset_right = 273.0
+offset_bottom = 159.0
+text = "House
+"
 
 [node name="StatusMenu" type="Control" parent="."]
 visible = false
@@ -80,3 +99,5 @@ text = "Struff goes in here
 [connection signal="area_entered" from="area" to="." method="_on_area_area_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="button_down" from="BuildMenu/Panel/factoryB" to="." method="_on_factory_b_button_down"]
+[connection signal="button_down" from="BuildMenu/Panel/farmB" to="." method="_on_farm_b_button_down"]
+[connection signal="button_down" from="BuildMenu/Panel/houseB" to="." method="_on_house_b_button_down"]

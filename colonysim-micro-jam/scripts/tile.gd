@@ -129,3 +129,11 @@ func _on_clickbox_area_entered(area: Area2D) -> void:
 func _on_clickbox_area_exited(area: Area2D) -> void:
 	if area.name == "mouse":
 		inMirrorMouse = false
+
+
+func _on_farm_b_button_down() -> void:
+	construction(2,0)
+
+
+func _on_house_b_button_down() -> void:
+	construction(3,0)
