@@ -27,6 +27,11 @@ func req(id, amt):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("exit"):
+		Engine.time_scale = 0
+		building=true
+		$audioManager/music.pitch_scale -= 0.5
+		$CanvasLayer/pauseMenu.visible=true
 	if building:
 		$StatusMenu.visible = false
 	$CanvasLayer/Panel/money.text = str(int(food))
@@ -45,3 +50,10 @@ func _on_build_cd_timeout() -> void:
 
 func _on_button_button_down() -> void:
 	get_tree().change_scene_to_file("res://scenes/loading.tscn")
+
+
+func _on_resume() -> void:
+	Engine.time_scale = 1
+	building = false
+	$CanvasLayer/pauseMenu.visible=false
+	$audioManager/music.pitch_scale += 0.5

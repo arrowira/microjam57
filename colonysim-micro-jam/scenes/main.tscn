@@ -159,6 +159,24 @@ offset_bottom = 390.0
 theme_override_font_sizes/font_size = 50
 text = "RETRY"
 
+[node name="pauseMenu" type="Panel" parent="CanvasLayer"]
+visible = false
+offset_left = 263.0
+offset_top = 23.0
+offset_right = 896.0
+offset_bottom = 625.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_jbj1t")
+
+[node name="Button" type="Button" parent="CanvasLayer/pauseMenu"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 256.0
+offset_right = 632.0
+offset_bottom = 390.0
+theme_override_font_sizes/font_size = 50
+text = "Resume
+"
+
 [node name="tileGroup" parent="." instance=ExtResource("1_0wfyh")]
 position = Vector2(-1983, -3702)
 
@@ -218,5 +236,6 @@ autoplay = true
 [connection signal="mouse_entered" from="CanvasLayer/Area2D" to="Camera2D" method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/Area2D" to="Camera2D" method="_on_area_2d_mouse_exited"]
 [connection signal="button_down" from="CanvasLayer/deathPanel/Button" to="." method="_on_button_button_down"]
+[connection signal="button_down" from="CanvasLayer/pauseMenu/Button" to="." method="_on_resume"]
 [connection signal="timeout" from="buildCD" to="." method="_on_build_cd_timeout"]
 [connection signal="timeout" from="starttiles/startArea/Timer" to="starttiles/startArea" method="_on_timer_timeout"]
