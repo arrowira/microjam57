@@ -107,7 +107,7 @@ func consBC(buildID, sprite, onStart):
 			$sprites/ResidentialLeft.visible=true
 		else:
 			$sprites/ResidentialRight.visible=true
-		baseOutput = 1
+		baseOutput = 0.8
 		manager.people+=2
 		manager.metal-=4
 		sprite.modulate.r +=0.05
@@ -235,13 +235,13 @@ func _on_timer_timeout() -> void:
 	for i in range(10):
 		for area in $area.get_overlapping_areas():
 			if area.name == "clickbox":
-				
-				if area.get_parent().id == 1:
-					if randf()<0.05:
-						id = 1
 				if area.get_parent().id == 2:
 					if randf()<0.05:
 						id = 2
+				if area.get_parent().id == 1:
+					if randf()<0.05:
+						id = 1
+				
 				idUpdate()
 
 
