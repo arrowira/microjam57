@@ -9,10 +9,12 @@ var flipped = false
 var buildCD = false
 
 var leftGround = Color(0.377, 0.457, 0.33, 1.0)
-var rightGround = Color(0.593, 0.503, 0.698, 1.0)
+var rightGround = Color(0.454, 0.375, 0.577, 1.0)
 var abyss = Color(0.043, 0.043, 0.043, 1.0)
 var leftFertile = Color(0.37, 0.542, 0.291, 1.0)
-var rightFertile = Color(0.761, 0.488, 0.577, 1.0)
+var rightFertile = Color(0.693, 0.485, 0.785, 1.0)
+var leftSunny = Color(0.697, 0.624, 0.451, 1.0)
+var rightSunny = Color(0.773, 0.58, 0.5, 1.0)
 
 
 var boost = 0
@@ -41,16 +43,27 @@ func _ready() -> void:
 	
 
 func configurestatus():
-	if id == 2:
-		#void
-		$StatusMenu/Panel/statusText.text = "Void tile; unbuildable"
-	elif id == 1:
-		#fertile
-		$StatusMenu/Panel/statusText.text = "Fertile land; boosted farm outputs"
+	if industrialID == 0:
+		if id == 2:
+			#void
+			$StatusMenu/Panel/statusText.text = "Void tile; unbuildable"
+		elif id == 1:
+			#fertile
+			$StatusMenu/Panel/statusText.text = "Fertile land; boosted farm outputs"
+		elif id == 3:
+			$StatusMenu/Panel/statusText.text = "Sunny land; boosted power output"
+		else:
+			#normal
+			$StatusMenu/Panel/statusText.text = "normal land"
 	else:
-		#normal
-		$StatusMenu/Panel/statusText.text = "normal land"
-	
+		if industrialID == 1:
+			$StatusMenu/Panel/statusText.text = "factory; +" + str(boost+baseOutput) + " metal/second"
+		elif industrialID == 2:
+			$StatusMenu/Panel/statusText.text = "farm; +" + str(boost+baseOutput) + " food/second"
+		elif industrialID == 3:
+			$StatusMenu/Panel/statusText.text = "house; -" + str(boost+baseOutput) + " food/second"
+		elif industrialID == 4:
+			$StatusMenu/Panel/statusText.text = "power plant; +" + str(boost+baseOutput) + " power/second"
 
 func idUpdate():
 	if id == 1:
@@ -61,6 +74,11 @@ func idUpdate():
 	elif id == 2:
 		$EquilateralTriangle.modulate = abyss
 		defaultMod = 1
+	elif id == 3:
+		if position.x > 2000:
+			$EquilateralTriangle.modulate = rightSunny
+		else:
+			$EquilateralTriangle.modulate = leftSunny
 	configurestatus()
 
 
@@ -114,22 +132,30 @@ func consBC(buildID, sprite, onStart):
 			$sprites/ResidentialRight.visible=true
 		baseOutput = 1
 		manager.people+=2
-		manager.metal-=5
+		manager.metal-=4
 		sprite.modulate.r +=0.05
 	if buildID == 4:
+		if id == 3:
+			boost=1
+			var sparks = sparkles.instantiate()
+			get_parent().add_child(sparks)
+			sparks.position = position
+			sparks.z_index = z_index+1
 		if flipped:
 			$sprites/PowerplantLeft.visible=true
 		else:
 			$sprites/PowerplantRight.visible=true
 		baseOutput = 0.5
 		manager.people-=1
-		manager.metal-=10
+		manager.metal-=8
 		sprite.modulate = Color(0.244, 0.33, 0.424, 1.0)
 		
 	building=false
 	$BuildMenu.visible = false
 	get_parent().get_parent().construct()
+	configurestatus()
 	
+
 func build():
 	$BuildMenu.visible=true
 	building = true
@@ -150,14 +176,14 @@ func _physics_process(delta: float) -> void:
 					else:
 						$sprites.modulate = Color.WHITE
 						manager.metal+=baseOutput+boost
-						manager.power-=baseOutput
+						manager.power-=baseOutput/1.5
 				2:
 					if manager.power < 2:
 						$sprites.modulate = Color.WHITE*0.3
 					else:
 						$sprites.modulate = Color.WHITE
 						manager.food+=baseOutput+boost
-						manager.power-=baseOutput
+						manager.power-=baseOutput/2
 				3:
 					manager.food-=baseOutput+boost
 				4:
@@ -175,11 +201,11 @@ func _process(delta: float) -> void:
 			$BuildMenu/Panel/farmB.modulate.a = 0.2
 		else:
 			$BuildMenu/Panel/farmB.modulate.a = 1
-		if !(manager.req(1,4)):
+		if !(manager.req(1,8)):
 			$BuildMenu/Panel/houseB.modulate.a = 0.2
 		else:
 			$BuildMenu/Panel/houseB.modulate.a = 1
-		if !(manager.req(1,10) and manager.req(2,1)):
+		if !(manager.req(1,8) and manager.req(2,1)):
 			$BuildMenu/Panel/powerB.modulate.a = 0.2
 		else:
 			$BuildMenu/Panel/powerB.modulate.a = 1
@@ -258,7 +284,7 @@ func _on_clickbox_area_exited(area: Area2D) -> void:
 
 
 func _on_farm_b_button_down() -> void:
-	if manager.req(1,4) and manager.req(2,2):
+	if manager.req(1,4) and manager.req(2,4):
 		construction(2,0)
 
 
@@ -276,5 +302,5 @@ func _on_X_down() -> void:
 
 
 func _on_power_b_button_down() -> void:
-	if manager.req(1,10) and manager.req(2,1):
+	if manager.req(1,8) and manager.req(2,1):
 		construction(4,0)

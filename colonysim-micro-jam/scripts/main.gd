@@ -17,13 +17,13 @@ func req(id, amt):
 	#ids: 0=food, 1=metal, 2=people
 	match(id):
 		0:
-			return amt<food
+			return amt<=food
 		1:
-			return amt<metal
+			return amt<=metal
 		2: 
-			return amt<people
+			return amt<=people
 		3:
-			return amt<power
+			return amt<=power
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
