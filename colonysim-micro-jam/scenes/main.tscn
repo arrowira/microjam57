@@ -93,6 +93,7 @@ text = "0
 horizontal_alignment = 2
 
 [node name="lowFood" type="RichTextLabel" parent="CanvasLayer/Panel"]
+visible = false
 texture_filter = 1
 layout_mode = 0
 offset_left = 74.0
@@ -106,6 +107,7 @@ text = "LOW FOOD
 "
 
 [node name="powerOutage" type="RichTextLabel" parent="CanvasLayer/Panel"]
+visible = false
 texture_filter = 1
 layout_mode = 0
 offset_left = 73.0

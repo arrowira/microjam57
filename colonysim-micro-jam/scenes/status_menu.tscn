@@ -15,8 +15,8 @@ script = ExtResource("1_yu8m8")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
-offset_right = 234.0
-offset_bottom = 80.0
+offset_right = 244.0
+offset_bottom = 143.0
 
 [node name="statusText" type="RichTextLabel" parent="Panel"]
 layout_mode = 0
@@ -25,3 +25,19 @@ offset_bottom = 78.0
 theme_override_font_sizes/normal_font_size = 25
 text = "Struff goes in here
 "
+
+[node name="durability" type="RichTextLabel" parent="Panel"]
+layout_mode = 0
+offset_top = 85.0
+offset_right = 234.0
+offset_bottom = 163.0
+theme_override_font_sizes/normal_font_size = 25
+text = "structural integrity:"
+
+[node name="dvalue" type="RichTextLabel" parent="Panel/durability"]
+layout_mode = 0
+offset_top = 25.0
+offset_right = 234.0
+offset_bottom = 103.0
+theme_override_font_sizes/normal_font_size = 25
+text = "100"

@@ -19,6 +19,7 @@ var rightSunny = Color(0.773, 0.58, 0.5, 1.0)
 
 var boost = 0
 var baseOutput = 0
+var durability = 100
 
 var manager
 var defaultMod = 1
@@ -144,6 +145,12 @@ func build():
 #structure longterm effects
 var t = 0
 func _physics_process(delta: float) -> void:
+	if industrialID != 0 and industrialID!=3:
+		if randf() < 0.1 and randf() < 0.1 and durability != 0:
+			durability-=1
+		if inMouse:
+			get_parent().get_parent().get_node("StatusMenu").updateDurability(durability)
+	
 	if industrialID!=0:
 		t+=1
 		if t%50==0:
@@ -154,7 +161,7 @@ func _physics_process(delta: float) -> void:
 					else:
 						$sprites.modulate = Color.WHITE
 						manager.metal+=baseOutput+boost
-						manager.power-=baseOutput/1.5
+						manager.power-=baseOutput
 				2:
 					if manager.power < 2:
 						$sprites.modulate = Color.WHITE*0.3

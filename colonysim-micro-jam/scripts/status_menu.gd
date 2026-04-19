@@ -1,9 +1,13 @@
 extends Control
 
 
-
+var durability = 100
+func updateDurability(newDur):
+	durability = newDur
+	$Panel/durability/dvalue.text = str(durability)+"%"
 func configurestatus(industrialID, id, boost, baseOutput):
 	if industrialID == 0:
+		$Panel/durability.visible=false
 		if id == 2:
 			#void
 			$Panel/statusText.text = "Void tile; unbuildable"
@@ -16,11 +20,14 @@ func configurestatus(industrialID, id, boost, baseOutput):
 			#normal
 			$Panel/statusText.text = "normal land"
 	else:
+		$Panel/durability/dvalue.text = str(durability)+"%"
+		$Panel/durability.visible=true
 		if industrialID == 1:
 			$Panel/statusText.text = "factory; +" + str(boost+baseOutput) + " metal/second"
 		elif industrialID == 2:
 			$Panel/statusText.text = "farm; +" + str(boost+baseOutput) + " food/second"
 		elif industrialID == 3:
 			$Panel/statusText.text = "house; -" + str(boost+baseOutput) + " food/second"
+			$Panel/durability.visible=false
 		elif industrialID == 4:
 			$Panel/statusText.text = "power plant; +" + str(boost+baseOutput) + " power/second"
