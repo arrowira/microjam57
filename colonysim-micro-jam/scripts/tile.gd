@@ -43,13 +43,18 @@ func consBC(id, sprite, onStart):
 	industrialID = id
 	if sprite == 0:
 		sprite = $EquilateralTriangle
-	#factory
-	if id == 1:
-		if !onStart:
+	#mirror
+	if !onStart:
 			for area in get_parent().get_parent().get_node("mousemirror").get_node("mouse").get_overlapping_areas():
 				if area.name == "clickbox":
-					area.get_parent().consBC(1,0,true)
+					area.get_parent().consBC(id,0,true)
+	#factory
+	if id == 1:
 		sprite.modulate = Color.GRAY
+	if id == 2:
+		sprite.modulate = Color.ANTIQUE_WHITE
+	if id == 3:
+		sprite.modulate = Color.CHOCOLATE
 	
 	building=false
 	$BuildMenu.visible = false
@@ -60,12 +65,23 @@ func build():
 	building = true
 	get_parent().get_parent().building = true
 	
+	
+	
 func _physics_process(delta: float) -> void:
 	var manager = get_parent().get_parent()
 	if industrialID!=0:
-		if industrialID==1:
-			manager.metal+= 0.01
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+		match industrialID:
+			1:
+				manager.metal+=0.001
+			2:
+				manager.food+=0.01
+			3:
+				manager.people+=0.01
+				
+			
+			
+			
+			
 func _process(delta: float) -> void:
 	if inMouse or inMirrorMouse:
 		$EquilateralTriangle.modulate.a = 0.8

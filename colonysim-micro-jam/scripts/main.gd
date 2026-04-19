@@ -2,7 +2,7 @@ extends Node2D
 
 var building = false
 
-var money = 0
+var food = 0
 var metal = 0
 var people = 0
 
@@ -15,7 +15,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	$CanvasLayer/Panel/money.text = str(int(money))
+	$CanvasLayer/Panel/money.text = str(int(food))
 	$CanvasLayer/Panel/metal.text = str(int(metal))
 	$CanvasLayer/Panel/people.text = str(int(people))
 
