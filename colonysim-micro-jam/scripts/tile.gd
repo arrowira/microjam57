@@ -108,10 +108,14 @@ func consBC(buildID, sprite, onStart):
 		manager.people-=2
 	#house
 	if buildID == 3:
+		if flipped:
+			$sprites/ResidentialLeft.visible=true
+		else:
+			$sprites/ResidentialRight.visible=true
 		baseOutput = 1
 		manager.people+=2
 		manager.metal-=5
-		sprite.modulate = Color.CHOCOLATE
+		sprite.modulate.r +=0.2
 	
 	building=false
 	$BuildMenu.visible = false
@@ -154,6 +158,10 @@ func _process(delta: float) -> void:
 			$BuildMenu/Panel/houseB.modulate.a = 0.2
 		else:
 			$BuildMenu/Panel/houseB.modulate.a = 1
+		if !(manager.req(1,10) and manager.req(2,1)):
+			$BuildMenu/Panel/powerB.modulate.a = 0.2
+		else:
+			$BuildMenu/Panel/powerB.modulate.a = 1
 	
 	#highlighting
 	if inMouse or inMirrorMouse:
@@ -244,3 +252,8 @@ func _on_X_down() -> void:
 	building = false
 	get_parent().get_parent().construct()
 	
+
+
+func _on_power_b_button_down() -> void:
+	if manager.req(1,10) and manager.req(2,1):
+		construction(4,0)
