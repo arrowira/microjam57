@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://b0qxc8g7iqhid"]
+[gd_scene load_steps=4 format=3 uid="uid://b0qxc8g7iqhid"]
 
 [ext_resource type="Texture2D" uid="uid://1k8uc5pg22k5" path="res://sprites/equilateral triangle.png" id="1_3dk36"]
 [ext_resource type="Script" uid="uid://c2bervsmjg1qd" path="res://scripts/tile.gd" id="1_ywnoi"]
+[ext_resource type="Texture2D" uid="uid://cj8bwljpiovk" path="res://sprites/Factory_Right.webp" id="3_jy7pm"]
 
 [node name="tile" type="Node2D"]
 script = ExtResource("1_ywnoi")
@@ -94,6 +95,12 @@ text = "Struff goes in here
 "
 
 [node name="sprites" type="Node2D" parent="."]
+z_index = 1
+
+[node name="FactoryRight" type="Sprite2D" parent="sprites"]
+visible = false
+position = Vector2(34, -55)
+texture = ExtResource("3_jy7pm")
 
 [connection signal="area_entered" from="clickbox" to="." method="_on_clickbox_area_entered"]
 [connection signal="area_exited" from="clickbox" to="." method="_on_clickbox_area_exited"]

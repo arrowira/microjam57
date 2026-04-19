@@ -52,7 +52,7 @@ func consBC(id, sprite, onStart):
 					area.get_parent().consBC(id,0,true)
 	#factory
 	if id == 1:
-		sprite.modulate = Color.GRAY
+		$sprites/FactoryRight.visible=true
 		manager.metal-=5
 	#farm
 	if id == 2:
@@ -82,7 +82,8 @@ func _physics_process(delta: float) -> void:
 				manager.metal+=0.001
 			2:
 				manager.food+=0.01
-				
+			3:
+				manager.food-=0.01
 			
 			
 			
