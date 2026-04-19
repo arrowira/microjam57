@@ -58,7 +58,7 @@ offset_left = -116.0
 offset_top = -111.0
 offset_right = -76.0
 offset_bottom = -71.0
-mouse_filter = 2
+mouse_filter = 1
 
 [node name="Panel" type="Panel" parent="StatusMenu"]
 layout_mode = 0

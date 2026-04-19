@@ -1,11 +1,14 @@
 extends Node2D
 
 var inMouse = false
+var inMirrorMouse = false
 var id = 0
 var industrialID = 0
 var building = false
 var flipped = false
 var buildCD = false
+
+var defaultMod = 1
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$StatusMenu.position=Vector2(-1,-1)
@@ -31,6 +34,7 @@ func idUpdate():
 	elif id == 2:
 		$EquilateralTriangle.modulate = Color.WHITE * 0.1
 		$EquilateralTriangle.modulate.a = 1
+		defaultMod = 1
 	configurestatus()
 
 func construction(id, sprite):
@@ -63,8 +67,11 @@ func _physics_process(delta: float) -> void:
 			manager.metal+= 0.01
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	
-	
+	if inMouse or inMirrorMouse:
+		$EquilateralTriangle.modulate.a = 0.8
+	else:
+		$EquilateralTriangle.modulate.a = defaultMod
+		
 	if get_parent().get_parent().building:
 		$StatusMenu.visible=false
 	if Input.is_action_just_pressed("click") and inMouse:
@@ -112,3 +119,13 @@ func _on_timer_timeout() -> void:
 
 func _on_factory_b_button_down() -> void:
 	construction(1,0)
+
+
+func _on_clickbox_area_entered(area: Area2D) -> void:
+	if area.name == "mouse":
+		inMirrorMouse = true
+
+
+func _on_clickbox_area_exited(area: Area2D) -> void:
+	if area.name == "mouse":
+		inMirrorMouse = false

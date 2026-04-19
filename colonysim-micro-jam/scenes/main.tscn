@@ -1,10 +1,23 @@
-[gd_scene load_steps=8 format=3 uid="uid://do2y2rxcevt50"]
+[gd_scene load_steps=10 format=3 uid="uid://do2y2rxcevt50"]
 
 [ext_resource type="PackedScene" uid="uid://boxtb7fd348qt" path="res://scenes/tilegroup.tscn" id="1_0wfyh"]
 [ext_resource type="Script" uid="uid://coqpyfbjlvgwh" path="res://scripts/main.gd" id="1_jyhfs"]
 [ext_resource type="Script" uid="uid://carv07d8dyemw" path="res://scripts/camera.gd" id="2_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://dy0bdojpmvwjh" path="res://scenes/mousemirror.tscn" id="3_sugp2"]
 [ext_resource type="Script" uid="uid://ighr3ohaixx7" path="res://scripts/start_area.gd" id="5_tbgi4"]
+[ext_resource type="Shader" uid="uid://dqemw4caaatca" path="res://swirly.gdshader" id="6_tefeu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o6xl0"]
+shader = ExtResource("6_tefeu")
+shader_parameter/innerColor = Color(0.13837898, 0.22008106, 0.27394697, 1)
+shader_parameter/outerColor = Color(0.6513541, 0.72226834, 0.66328156, 1)
+shader_parameter/scale = 100.0
+shader_parameter/timeMod = 0.5
+shader_parameter/pixelation = 0.01
+shader_parameter/bold = 5.0
+shader_parameter/sharp = 3.0
+shader_parameter/moveSpeed = 1.0
+shader_parameter/focusPoint = Vector2(0.5, 0.5)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0wfyh"]
 radius = 240.00003
@@ -15,6 +28,16 @@ size = Vector2(114, 20)
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_jyhfs")
+metadata/_edit_horizontal_guides_ = [9473.0]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -20
+material = SubResource("ShaderMaterial_o6xl0")
+offset_left = -11354.0
+offset_top = -12288.0
+offset_right = 11723.0
+offset_bottom = 12726.0
+mouse_filter = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
