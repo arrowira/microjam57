@@ -69,7 +69,7 @@ shape = SubResource("CapsuleShape2D_0wfyh")
 offset_left = 13.0
 offset_top = 10.0
 offset_right = 83.0
-offset_bottom = 144.0
+offset_bottom = 186.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_a8y0u")
 
 [node name="money" type="RichTextLabel" parent="CanvasLayer/Panel"]
@@ -115,6 +115,21 @@ horizontal_alignment = 2
 
 [node name="peoplesign" type="Sprite2D" parent="CanvasLayer/Panel"]
 position = Vector2(57.000004, 103)
+scale = Vector2(0.015, 0.015)
+texture = ExtResource("5_trceg")
+
+[node name="power" type="RichTextLabel" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_top = 133.935
+offset_right = 41.0
+offset_bottom = 163.935
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "0
+"
+horizontal_alignment = 2
+
+[node name="powerSign" type="Sprite2D" parent="CanvasLayer/Panel"]
+position = Vector2(57.000004, 138.935)
 scale = Vector2(0.015, 0.015)
 texture = ExtResource("5_trceg")
 

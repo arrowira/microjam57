@@ -5,6 +5,7 @@ var building = false
 var food = 40
 var metal = 30
 var people = 4
+var power = 50
 
 func construct():
 	$buildCD.start()
@@ -21,12 +22,15 @@ func req(id, amt):
 			return amt<metal
 		2: 
 			return amt<people
+		3:
+			return amt<power
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	$CanvasLayer/Panel/money.text = str(int(food))
 	$CanvasLayer/Panel/metal.text = str(int(metal))
 	$CanvasLayer/Panel/people.text = str(int(people))
+	$CanvasLayer/Panel/power.text = str(int(power))
 	
 	if food < 0:
 		$CanvasLayer/deathPanel.visible=true
