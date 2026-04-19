@@ -8,9 +8,14 @@ var building = false
 var flipped = false
 var buildCD = false
 
+var boost = 0
+var baseOutput = 0
+
 var manager
 var defaultMod = 1
-# Called when the node enters the scene tree for the first time.
+
+
+#on ready stuff
 func _ready() -> void:
 	manager = get_parent().get_parent()
 	$StatusMenu.position=Vector2(-1,-1)
@@ -46,34 +51,43 @@ func idUpdate():
 		defaultMod = 1
 	configurestatus()
 
+
+#create structure
 func construction(id, sprite):
 	consBC(id,sprite,false)
-func consBC(id, sprite, onStart):
+
+
+func consBC(buildID, sprite, onStart):
 	
 	get_parent().get_parent().get_node("audioManager").place()
 	
-	industrialID = id
+	industrialID = buildID
 	if sprite == 0:
 		sprite = $EquilateralTriangle
 	#mirror
 	if !onStart:
 			for area in get_parent().get_parent().get_node("mousemirror").get_node("mouse").get_overlapping_areas():
 				if area.name == "clickbox":
-					area.get_parent().consBC(id,0,true)
+					area.get_parent().consBC(buildID,0,true)
 	#factory
-	if id == 1:
+	if buildID == 1:
+		baseOutput = 1
 		$sprites/FactoryRight.visible=true
 		manager.metal-=5
 		manager.people-=1
 	#farm
-	if id == 2:
+	if buildID == 2:
+		if id == 1:
+			boost=1
+		baseOutput = 2
 		manager.metal-=2
 		manager.people-=2
 		sprite.modulate = Color.ANTIQUE_WHITE
 	#house
-	if id == 3:
+	if buildID == 3:
+		baseOutput = 1
 		manager.people+=2
-		manager.metal-=2
+		manager.metal-=5
 		sprite.modulate = Color.CHOCOLATE
 	
 	building=false
@@ -87,20 +101,25 @@ func build():
 	
 	
 	
+#structure longterm effects
+var t = 0
 func _physics_process(delta: float) -> void:
 	if industrialID!=0:
-		match industrialID:
-			1:
-				manager.metal+=0.008
-			2:
-				manager.food+=0.01
-			3:
-				manager.food-=0.005
+		t+=1
+		if t%50==0:
+			match industrialID:
+				1:
+					manager.metal+=baseOutput+boost
+				2:
+					manager.food+=baseOutput+boost
+				3:
+					manager.food-=baseOutput+boost
 			
 			
 			
 			
 func _process(delta: float) -> void:
+	#button opacities
 	if building:
 		if !(manager.req(1,10) and manager.req(2,1)):
 			$BuildMenu/Panel/factoryB.modulate.a = 0.2
@@ -115,6 +134,7 @@ func _process(delta: float) -> void:
 		else:
 			$BuildMenu/Panel/houseB.modulate.a = 1
 	
+	#highlighting
 	if inMouse or inMirrorMouse:
 		$EquilateralTriangle.modulate.a = 0.8
 	else:
