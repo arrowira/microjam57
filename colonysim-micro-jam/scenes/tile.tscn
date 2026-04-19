@@ -1,8 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://b0qxc8g7iqhid"]
+[gd_scene load_steps=7 format=3 uid="uid://b0qxc8g7iqhid"]
 
 [ext_resource type="Texture2D" uid="uid://1k8uc5pg22k5" path="res://sprites/equilateral triangle.png" id="1_3dk36"]
 [ext_resource type="Script" uid="uid://c2bervsmjg1qd" path="res://scripts/tile.gd" id="1_ywnoi"]
 [ext_resource type="Texture2D" uid="uid://cj8bwljpiovk" path="res://sprites/Factory_Right.webp" id="3_jy7pm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jy7pm"]
+bg_color = Color(0.2712231, 0.30817446, 0.34673908, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q7utx"]
+bg_color = Color(0.3177906, 0.4410281, 0.33491555, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6p3j2"]
+bg_color = Color(0.6295259, 0.4283951, 0.3183641, 1)
 
 [node name="tile" type="Node2D"]
 script = ExtResource("1_ywnoi")
@@ -50,6 +59,7 @@ offset_left = 5.0
 offset_top = 7.0
 offset_right = 273.0
 offset_bottom = 54.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_jy7pm")
 text = "Factory"
 
 [node name="farmB" type="Button" parent="BuildMenu/Panel"]
@@ -58,6 +68,7 @@ offset_left = 5.0
 offset_top = 59.0
 offset_right = 273.0
 offset_bottom = 106.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_q7utx")
 text = "Farm
 "
 
@@ -67,6 +78,7 @@ offset_left = 5.0
 offset_top = 112.0
 offset_right = 273.0
 offset_bottom = 159.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_6p3j2")
 text = "House
 "
 

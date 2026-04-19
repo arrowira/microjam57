@@ -54,9 +54,11 @@ func consBC(id, sprite, onStart):
 	if id == 1:
 		$sprites/FactoryRight.visible=true
 		manager.metal-=5
+		manager.people-=1
 	#farm
 	if id == 2:
 		manager.metal-=2
+		manager.people-=2
 		sprite.modulate = Color.ANTIQUE_WHITE
 	#house
 	if id == 3:
@@ -79,16 +81,30 @@ func _physics_process(delta: float) -> void:
 	if industrialID!=0:
 		match industrialID:
 			1:
-				manager.metal+=0.001
+				manager.metal+=0.008
 			2:
 				manager.food+=0.01
 			3:
-				manager.food-=0.01
+				manager.food-=0.005
 			
 			
 			
 			
 func _process(delta: float) -> void:
+	if building:
+		if !(manager.req(1,10) and manager.req(2,1)):
+			$BuildMenu/Panel/factoryB.modulate.a = 0.2
+		else:
+			$BuildMenu/Panel/factoryB.modulate.a = 1
+		if !(manager.req(1,4) and manager.req(2,2)):
+			$BuildMenu/Panel/farmB.modulate.a = 0.2
+		else:
+			$BuildMenu/Panel/farmB.modulate.a = 1
+		if !(manager.req(1,4)):
+			$BuildMenu/Panel/houseB.modulate.a = 0.2
+		else:
+			$BuildMenu/Panel/houseB.modulate.a = 1
+	
 	if inMouse or inMirrorMouse:
 		$EquilateralTriangle.modulate.a = 0.8
 	else:
@@ -140,7 +156,8 @@ func _on_timer_timeout() -> void:
 
 
 func _on_factory_b_button_down() -> void:
-	construction(1,0)
+	if manager.req(1,10) and manager.req(2,1):
+		construction(1,0)
 
 
 func _on_clickbox_area_entered(area: Area2D) -> void:
@@ -154,8 +171,11 @@ func _on_clickbox_area_exited(area: Area2D) -> void:
 
 
 func _on_farm_b_button_down() -> void:
-	construction(2,0)
+	if manager.req(1,4) and manager.req(2,2):
+		construction(2,0)
+
 
 
 func _on_house_b_button_down() -> void:
-	construction(3,0)
+	if manager.req(1,4):
+		construction(3,0)
