@@ -2,9 +2,9 @@ extends Node2D
 
 var building = false
 
-var food = 10
-var metal = 20
-var people = 2
+var food = 40
+var metal = 30
+var people = 4
 
 func construct():
 	$buildCD.start()
@@ -27,7 +27,14 @@ func _process(delta: float) -> void:
 	$CanvasLayer/Panel/money.text = str(int(food))
 	$CanvasLayer/Panel/metal.text = str(int(metal))
 	$CanvasLayer/Panel/people.text = str(int(people))
+	
+	if food < 0:
+		$CanvasLayer/deathPanel.visible=true
 
 
 func _on_build_cd_timeout() -> void:
 	building = false
+
+
+func _on_button_button_down() -> void:
+	get_tree().change_scene_to_file("res://scenes/main.tscn")

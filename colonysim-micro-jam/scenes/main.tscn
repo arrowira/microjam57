@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://do2y2rxcevt50"]
+[gd_scene load_steps=22 format=3 uid="uid://do2y2rxcevt50"]
 
 [ext_resource type="PackedScene" uid="uid://boxtb7fd348qt" path="res://scenes/tilegroup.tscn" id="1_0wfyh"]
 [ext_resource type="Script" uid="uid://coqpyfbjlvgwh" path="res://scripts/main.gd" id="1_jyhfs"]
@@ -36,8 +36,11 @@ height = 1015.0
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a8y0u"]
 bg_color = Color(0.4010496, 0.58130556, 0.6071586, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jbj1t"]
+bg_color = Color(0.14406255, 0.14406255, 0.14406249, 1)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jyhfs"]
-size = Vector2(114, 20)
+size = Vector2(63, 10)
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_jyhfs")
@@ -63,16 +66,16 @@ rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_0wfyh")
 
 [node name="Panel" type="Panel" parent="CanvasLayer"]
-offset_left = 9.0
-offset_top = 9.0
-offset_right = 138.0
-offset_bottom = 183.0
+offset_left = 13.0
+offset_top = 10.0
+offset_right = 83.0
+offset_bottom = 144.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_a8y0u")
 
 [node name="money" type="RichTextLabel" parent="CanvasLayer/Panel"]
 layout_mode = 0
 offset_top = 15.0
-offset_right = 100.0
+offset_right = 41.0
 offset_bottom = 45.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 text = "0
@@ -80,14 +83,14 @@ text = "0
 horizontal_alignment = 2
 
 [node name="foodsign" type="Sprite2D" parent="CanvasLayer/Panel"]
-position = Vector2(117, 21)
+position = Vector2(56.000004, 21)
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("3_ya4ey")
 
 [node name="metal" type="RichTextLabel" parent="CanvasLayer/Panel"]
 layout_mode = 0
 offset_top = 58.0
-offset_right = 100.0
+offset_right = 42.0
 offset_bottom = 88.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 text = "0
@@ -96,14 +99,14 @@ horizontal_alignment = 2
 
 [node name="metalSign" type="Sprite2D" parent="CanvasLayer/Panel"]
 modulate = Color(0, 0, 0, 1)
-position = Vector2(117, 65)
+position = Vector2(57, 65)
 scale = Vector2(0.01, 0.01)
 texture = ExtResource("4_eb6dy")
 
 [node name="people" type="RichTextLabel" parent="CanvasLayer/Panel"]
 layout_mode = 0
 offset_top = 98.0
-offset_right = 100.0
+offset_right = 41.0
 offset_bottom = 128.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 text = "0
@@ -111,9 +114,26 @@ text = "0
 horizontal_alignment = 2
 
 [node name="peoplesign" type="Sprite2D" parent="CanvasLayer/Panel"]
-position = Vector2(117, 103)
+position = Vector2(57.000004, 103)
 scale = Vector2(0.015, 0.015)
 texture = ExtResource("5_trceg")
+
+[node name="deathPanel" type="Panel" parent="CanvasLayer"]
+visible = false
+offset_left = 29.0
+offset_top = 23.0
+offset_right = 1127.0
+offset_bottom = 625.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_jbj1t")
+
+[node name="Button" type="Button" parent="CanvasLayer/deathPanel"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 256.0
+offset_right = 1099.0
+offset_bottom = 390.0
+theme_override_font_sizes/font_size = 50
+text = "RETRY"
 
 [node name="tileGroup" parent="." instance=ExtResource("1_0wfyh")]
 position = Vector2(-1983, -3702)
@@ -129,12 +149,13 @@ wait_time = 0.054
 one_shot = true
 
 [node name="starttiles" type="Node2D" parent="."]
-position = Vector2(-1, 228)
+position = Vector2(-1, 237)
 
 [node name="startArea" type="Area2D" parent="starttiles"]
 script = ExtResource("5_tbgi4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="starttiles/startArea"]
+position = Vector2(1.5, 5)
 shape = SubResource("RectangleShape2D_jyhfs")
 
 [node name="Timer" type="Timer" parent="starttiles/startArea"]
@@ -144,6 +165,7 @@ autostart = true
 
 [node name="Crosshair" type="Sprite2D" parent="."]
 modulate = Color(2.3102762e-06, 0.9100149, 0.9752019, 1)
+z_index = 100
 texture_filter = 1
 position = Vector2(-2, -7)
 scale = Vector2(4, 4)
@@ -171,5 +193,6 @@ autoplay = true
 
 [connection signal="mouse_entered" from="CanvasLayer/Area2D" to="Camera2D" method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/Area2D" to="Camera2D" method="_on_area_2d_mouse_exited"]
+[connection signal="button_down" from="CanvasLayer/deathPanel/Button" to="." method="_on_button_button_down"]
 [connection signal="timeout" from="buildCD" to="." method="_on_build_cd_timeout"]
 [connection signal="timeout" from="starttiles/startArea/Timer" to="starttiles/startArea" method="_on_timer_timeout"]

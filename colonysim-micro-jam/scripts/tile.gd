@@ -8,6 +8,13 @@ var building = false
 var flipped = false
 var buildCD = false
 
+var leftGround = Color(0.377, 0.457, 0.33, 1.0)
+var rightGround = Color(0.593, 0.503, 0.698, 1.0)
+var abyss = Color(0.043, 0.043, 0.043, 1.0)
+var leftFertile = Color(0.37, 0.542, 0.291, 1.0)
+var rightFertile = Color(0.761, 0.488, 0.577, 1.0)
+
+
 var boost = 0
 var baseOutput = 0
 
@@ -27,9 +34,9 @@ func _ready() -> void:
 		$sprites.rotation=PI
 	id = randi_range(0,20)
 	if position.x > 2000:
-		$EquilateralTriangle.modulate = Color.DARK_BLUE
+		$EquilateralTriangle.modulate = rightGround
 	else:
-		$EquilateralTriangle.modulate = Color.DARK_OLIVE_GREEN
+		$EquilateralTriangle.modulate = leftGround
 	idUpdate()
 	
 
@@ -47,10 +54,12 @@ func configurestatus():
 
 func idUpdate():
 	if id == 1:
-		$EquilateralTriangle.modulate.r = 0.2
+		if position.x > 2000:
+			$EquilateralTriangle.modulate = rightFertile
+		else:
+			$EquilateralTriangle.modulate = leftFertile
 	elif id == 2:
-		$EquilateralTriangle.modulate = Color.WHITE * 0.1
-		$EquilateralTriangle.modulate.a = 1
+		$EquilateralTriangle.modulate = abyss
 		defaultMod = 1
 	configurestatus()
 
@@ -75,7 +84,7 @@ func consBC(buildID, sprite, onStart):
 	#factory
 	if buildID == 1:
 		sprite.modulate = Color(0.244, 0.33, 0.424, 1.0)
-		baseOutput = 1
+		baseOutput = 0.25
 		if flipped:
 			$sprites/FactoryLeft.visible=true
 		else:
@@ -94,7 +103,7 @@ func consBC(buildID, sprite, onStart):
 			$sprites/FarmHouseLeft.visible=true
 		else:
 			$sprites/FarmHouseRight.visible=true
-		baseOutput = 2
+		baseOutput = 1
 		manager.metal-=2
 		manager.people-=2
 	#house
@@ -137,7 +146,7 @@ func _process(delta: float) -> void:
 			$BuildMenu/Panel/factoryB.modulate.a = 0.2
 		else:
 			$BuildMenu/Panel/factoryB.modulate.a = 1
-		if !(manager.req(1,4) and manager.req(2,2)):
+		if !(manager.req(1,4) and manager.req(2,4)):
 			$BuildMenu/Panel/farmB.modulate.a = 0.2
 		else:
 			$BuildMenu/Panel/farmB.modulate.a = 1
