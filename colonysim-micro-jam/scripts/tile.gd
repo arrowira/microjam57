@@ -131,7 +131,6 @@ func consBC(buildID, sprite, onStart):
 	if !onStart:
 		$BuildMenu.visible = false
 	get_parent().get_parent().construct()
-	get_parent().get_parent().get_node("StatusMenu").configurestatus(industrialID,id,boost,baseOutput)
 	
 
 func build():
@@ -223,8 +222,8 @@ func _process(delta: float) -> void:
 
 func _on_clickbox_mouse_entered() -> void:
 	inMouse = true
-	print(get_parent().get_parent().get_node("StatusMenu").position)
 	get_parent().get_parent().get_node("StatusMenu").position = global_position
+	get_parent().get_parent().get_node("StatusMenu").configurestatus(industrialID,id,boost,baseOutput)
 
 
 func _on_clickbox_mouse_exited() -> void:

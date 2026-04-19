@@ -27,6 +27,8 @@ func req(id, amt):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if building:
+		$StatusMenu.visible = false
 	$CanvasLayer/Panel/money.text = str(int(food))
 	$CanvasLayer/Panel/metal.text = str(int(metal))
 	$CanvasLayer/Panel/people.text = str(int(people))
@@ -38,6 +40,7 @@ func _process(delta: float) -> void:
 
 func _on_build_cd_timeout() -> void:
 	building = false
+	$StatusMenu.visible = true
 
 
 func _on_button_button_down() -> void:
