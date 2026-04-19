@@ -146,8 +146,10 @@ func build():
 var t = 0
 func _physics_process(delta: float) -> void:
 	if industrialID != 0 and industrialID!=3:
-		if randf() < 0.1 and randf() < 0.1 and durability != 0:
+		if randf() < 0.1 and randf() < 0.05 and durability != 0:
 			durability-=1
+			if randf() < 0.1:
+				durability -= 10
 		if inMouse:
 			get_parent().get_parent().get_node("StatusMenu").updateDurability(durability)
 
@@ -167,18 +169,19 @@ func _physics_process(delta: float) -> void:
 						else:
 							$sprites.modulate = Color.WHITE
 							manager.metal+=baseOutput+boost
-							manager.power-=baseOutput
+							manager.power-=baseOutput*1.5
 					2:
 						if manager.power < 2:
 							$sprites.modulate = Color.WHITE*0.3
 						else:
 							$sprites.modulate = Color.WHITE
 							manager.food+=baseOutput+boost
-							manager.power-=baseOutput/2
+							manager.power-=baseOutput/1.5
 					3:
 						manager.food-=baseOutput+boost
 					4:
 						manager.power+=baseOutput+boost
+						$sprites.modulate = Color.WHITE
 			
 
 func _process(delta: float) -> void:

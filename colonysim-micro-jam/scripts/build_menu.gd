@@ -9,11 +9,11 @@ func clearLists():
 func factory():
 	buildcosts.add_item("-10 metal")
 	buildcosts.add_item("-2 people")
-	effects.add_item("-0.5 power/sec")
+	effects.add_item("-0.75 power/sec")
 func farm():
 	buildcosts.add_item("-4 metal")
 	buildcosts.add_item("-4 people")
-	effects.add_item("-0.5 power/sec")
+	effects.add_item("-0.66 power/sec")
 func house():
 	buildcosts.add_item("-8 metal")
 func power():
