@@ -29,6 +29,13 @@ func configurestatus():
 	if id == 2:
 		#void
 		$StatusMenu/Panel/statusText.text = "Void tile; unbuildable"
+	elif id == 1:
+		#fertile
+		$StatusMenu/Panel/statusText.text = "Fertile land; boosted farm outputs"
+	else:
+		#normal
+		$StatusMenu/Panel/statusText.text = "normal land"
+	
 
 func idUpdate():
 	if id == 1:
