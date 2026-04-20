@@ -11,7 +11,7 @@ func construct():
 	$buildCD.start()
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	$audioManager/music.pitch_scale = 0.9
 
 func req(id, amt):
 	#ids: 0=food, 1=metal, 2=people
@@ -50,6 +50,7 @@ func _process(delta: float) -> void:
 	
 	if food < 0:
 		$CanvasLayer/deathPanel.visible=true
+		$audioManager/music.pitch_scale -= 0.5
 
 
 func _on_build_cd_timeout() -> void:
@@ -58,7 +59,7 @@ func _on_build_cd_timeout() -> void:
 
 
 func _on_button_button_down() -> void:
-	get_tree().change_scene_to_file("res://scenes/main.tscn")
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 
 
 func _on_resume() -> void:
