@@ -7,3 +7,5 @@ func place():
 	$place.play()
 func error():
 	$error.play()
+func repair():
+	$repair.play()

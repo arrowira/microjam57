@@ -146,7 +146,7 @@ func build():
 var t = 0
 func _physics_process(delta: float) -> void:
 	if industrialID != 0 and industrialID!=3:
-		if randf() < 0.1 and randf() < 0.05 and durability != 0:
+		if randf() < 0.1 and randf() < 0.05 and durability > 0:
 			durability-=1
 			if randf() < 0.1:
 				durability -= 10
@@ -156,7 +156,8 @@ func _physics_process(delta: float) -> void:
 		
 	if industrialID!=0:
 
-		if durability == 0:
+		if durability <= 0:
+			durability = 0
 			$sprites/repairButton.visible = true
 			$sprites.modulate = Color.RED
 		else:
@@ -169,7 +170,7 @@ func _physics_process(delta: float) -> void:
 						else:
 							$sprites.modulate = Color.WHITE
 							manager.metal+=baseOutput+boost
-							manager.power-=baseOutput*1.5
+							manager.power-=baseOutput
 					2:
 						if manager.power < 2:
 							$sprites.modulate = Color.WHITE*0.3
@@ -301,6 +302,7 @@ func _on_power_b_button_down() -> void:
 
 func repair() -> void:
 	if manager.req(1,5):
+		manager.get_node("audioManager").repair()
 		$sprites/repairButton.visible=false
 		manager.metal-=5
 		durability = 100
