@@ -1,0 +1,113 @@
+[gd_scene load_steps=6 format=3 uid="uid://byed78xgm2f2r"]
+
+[ext_resource type="Shader" uid="uid://dqemw4caaatca" path="res://swirly.gdshader" id="1_ekxnf"]
+[ext_resource type="Script" uid="uid://bo44ngfygssd0" path="res://scripts/main_menu.gd" id="1_wu84c"]
+[ext_resource type="FontFile" uid="uid://niifytjjw8ft" path="res://sprites/Xolonium-Bold.ttf" id="2_bqqt6"]
+[ext_resource type="Texture2D" uid="uid://1k8uc5pg22k5" path="res://sprites/equilateral triangle.png" id="4_8ln24"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wu84c"]
+shader = ExtResource("1_ekxnf")
+shader_parameter/innerColor = Color(0.38606238, 0.46538603, 0.6377794, 1)
+shader_parameter/outerColor = Color(0.68676645, 0.81879026, 1, 1)
+shader_parameter/scale = 5.0
+shader_parameter/timeMod = 0.5
+shader_parameter/pixelation = 0.01
+shader_parameter/bold = 5.0
+shader_parameter/sharp = 2.0
+shader_parameter/moveSpeed = 1.0
+shader_parameter/focusPoint = Vector2(0.5, 0.5)
+
+[node name="mainMenu" type="Node2D"]
+script = ExtResource("1_wu84c")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_wu84c")
+offset_right = 1869.0
+offset_bottom = 1063.0
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer"]
+offset_left = 348.0
+offset_top = 244.0
+offset_right = 1169.0
+offset_bottom = 510.0
+theme_override_colors/default_color = Color(0.18431373, 0.18431373, 0.21176471, 0.7529412)
+theme_override_fonts/normal_font = ExtResource("2_bqqt6")
+theme_override_font_sizes/normal_font_size = 150
+bbcode_enabled = true
+text = "Colony"
+
+[node name="Control2" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 348.0
+offset_top = 244.0
+offset_right = 388.0
+offset_bottom = 284.0
+scale = Vector2(-1, 1)
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/Control2"]
+layout_mode = 0
+offset_left = -1141.0
+offset_top = -2.0
+offset_right = -320.0
+offset_bottom = 264.0
+theme_override_colors/default_color = Color(0.23921569, 0.23921569, 0.21568628, 0.7176471)
+theme_override_fonts/normal_font = ExtResource("2_bqqt6")
+theme_override_font_sizes/normal_font_size = 150
+bbcode_enabled = true
+text = "Colony"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+offset_left = 345.0
+offset_top = 221.0
+offset_right = 1166.0
+offset_bottom = 487.0
+theme_override_colors/default_color = Color(0.75114185, 0.8625273, 0.63825715, 1)
+theme_override_fonts/normal_font = ExtResource("2_bqqt6")
+theme_override_font_sizes/normal_font_size = 150
+bbcode_enabled = true
+text = "Colony"
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 345.0
+offset_top = 221.0
+offset_right = 385.0
+offset_bottom = 261.0
+scale = Vector2(-1, 1)
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = -1141.0
+offset_top = -2.0
+offset_right = -320.0
+offset_bottom = 264.0
+theme_override_colors/default_color = Color(0.65887165, 0.6436666, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_bqqt6")
+theme_override_font_sizes/normal_font_size = 150
+bbcode_enabled = true
+text = "Colony"
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="CanvasLayer"]
+offset_left = 497.0
+offset_top = 533.0
+offset_right = 1341.0
+offset_bottom = 908.0
+theme_override_colors/default_color = Color(0.8472362, 0.8537765, 0.8500456, 1)
+theme_override_fonts/normal_font = ExtResource("2_bqqt6")
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "CLICK 
+
+
+
+TO START"
+horizontal_alignment = 1
+
+[node name="EquilateralTriangle" type="Sprite2D" parent="CanvasLayer"]
+modulate = Color(0.6156863, 0.72156864, 0.5686275, 0.9098039)
+position = Vector2(941, 660)
+texture = ExtResource("4_8ln24")
